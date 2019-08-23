@@ -71,7 +71,7 @@ namespace MinVR {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit(error);
+            Application.Quit(1);
 #endif
         }
 

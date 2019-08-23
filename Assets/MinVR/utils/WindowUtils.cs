@@ -72,7 +72,7 @@ public class WindowUtils {
 
         // 2) offset and positio the window, if we got something.
         if (windowHandle != IntPtr.Zero) {
-            SetWindowPos(windowHandle, 0, x, y, resX, resY, resX * resY == 0 ? 1 : 0);
+            SetWindowPos(windowHandle, 0 /*HWND_TOP*/, x, y, resX, resY, 0 /*No extra flags*/);
         }
 #endif
     }

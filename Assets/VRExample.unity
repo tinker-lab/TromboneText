@@ -211,6 +211,160 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &124037436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124037437}
+  - component: {fileID: 124037439}
+  - component: {fileID: 124037438}
+  m_Layer: 0
+  m_Name: CaveFloor_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &124037437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124037436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1669119665}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &124037438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124037436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010eceba7d7af4e67abaeec65dfc31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingSpaceCorners:
+    topLeft: {x: -4, y: -4, z: 0}
+    topRight: {x: 4, y: -4, z: 0}
+    bottomRight: {x: 4, y: -4, z: -4}
+    bottomLeft: {x: -4, y: -4, z: -4}
+  cam: {fileID: 1034262035}
+  headTrackingEvent: Head_Move
+  projectionType: 0
+  debugColor: {r: 1, g: 0.19141224, b: 0, a: 1}
+--- !u!114 &124037439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124037436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrNodeType: 1
+  serverIPAddress: 127.0.0.1
+  serverPort: 3490
+  windowXPos: 5520
+  windowYPos: 720
+  windowWidth: 1024
+  windowHeight: 720
+  unityMouseBtnsToVREvents: 0
+  unityMouseMovesToVREvents: 0
+  unityKeysToVREvents: []
+  unityAxesToVREvents: []
+  eventAliases: []
+--- !u!1 &178174765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178174766}
+  - component: {fileID: 178174768}
+  - component: {fileID: 178174767}
+  m_Layer: 0
+  m_Name: CaveLeftWall_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &178174766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178174765}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1669119665}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &178174767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178174765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010eceba7d7af4e67abaeec65dfc31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingSpaceCorners:
+    topLeft: {x: -4, y: 0, z: -4}
+    topRight: {x: -4, y: 0, z: 4}
+    bottomRight: {x: -4, y: -4, z: 4}
+    bottomLeft: {x: -4, y: -4, z: -4}
+  cam: {fileID: 1034262035}
+  headTrackingEvent: Head_Move
+  projectionType: 0
+  debugColor: {r: 0, g: 0.72492695, b: 1, a: 1}
+--- !u!114 &178174768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178174765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrNodeType: 1
+  serverIPAddress: 127.0.0.1
+  serverPort: 3490
+  windowXPos: 1680
+  windowYPos: 720
+  windowWidth: 1024
+  windowHeight: 720
+  unityMouseBtnsToVREvents: 0
+  unityMouseMovesToVREvents: 0
+  unityKeysToVREvents: []
+  unityAxesToVREvents: []
+  eventAliases: []
 --- !u!1 &241198989
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +473,83 @@ MonoBehaviour:
   translationalOffset: {x: 0, y: 0, z: 0}
   rotationalOffset: {x: 0, y: 0, z: 0}
   trackedObjects: []
+--- !u!1 &727534340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 727534341}
+  - component: {fileID: 727534343}
+  - component: {fileID: 727534342}
+  m_Layer: 0
+  m_Name: CaveRightWall_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &727534341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727534340}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1669119665}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727534342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727534340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010eceba7d7af4e67abaeec65dfc31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingSpaceCorners:
+    topLeft: {x: 4, y: 0, z: 4}
+    topRight: {x: 4, y: 0, z: -4}
+    bottomRight: {x: 4, y: -4, z: -4}
+    bottomLeft: {x: 4, y: -4, z: 4}
+  cam: {fileID: 1034262035}
+  headTrackingEvent: Head_Move
+  projectionType: 0
+  debugColor: {r: 0.99534297, g: 1, b: 0, a: 1}
+--- !u!114 &727534343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727534340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrNodeType: 1
+  serverIPAddress: 127.0.0.1
+  serverPort: 3490
+  windowXPos: 4240
+  windowYPos: 720
+  windowWidth: 1024
+  windowHeight: 720
+  unityMouseBtnsToVREvents: 0
+  unityMouseMovesToVREvents: 0
+  unityKeysToVREvents: []
+  unityAxesToVREvents: []
+  eventAliases: []
 --- !u!1 &755877326
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,12 +670,12 @@ GameObject:
   - component: {fileID: 767786586}
   - component: {fileID: 767786585}
   m_Layer: 0
-  m_Name: CaveRightWall
+  m_Name: CaveRightWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &767786584
 Transform:
   m_ObjectHideFlags: 0
@@ -457,7 +688,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1669119665}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &767786585
 MonoBehaviour:
@@ -474,8 +705,8 @@ MonoBehaviour:
   trackingSpaceCorners:
     topLeft: {x: 4, y: 4, z: 4}
     topRight: {x: 4, y: 4, z: -4}
-    bottomRight: {x: 4, y: -4, z: -4}
-    bottomLeft: {x: 4, y: -4, z: 4}
+    bottomRight: {x: 4, y: 0, z: -4}
+    bottomLeft: {x: 4, y: 0, z: 4}
   cam: {fileID: 1034262035}
   headTrackingEvent: Head_Move
   projectionType: 0
@@ -495,10 +726,10 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
-  windowXPos: 0
+  windowXPos: 4240
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -541,7 +772,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 0
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
@@ -572,7 +803,7 @@ Camera:
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 5
-  m_StereoSeparation: 0.022
+  m_StereoSeparation: 0.203
 --- !u!4 &1034262036
 Transform:
   m_ObjectHideFlags: 0
@@ -617,7 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVRDevice: {fileID: 0}
-  editorCmdLineArgs: -vrdevice CaveFrontWall
+  editorCmdLineArgs: -vrdevice CaveFrontWall_Top
   debugLogEvents: 0
 --- !u!4 &1475157710
 Transform:
@@ -632,6 +863,192 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1519929333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519929334}
+  - component: {fileID: 1519929336}
+  - component: {fileID: 1519929335}
+  m_Layer: 0
+  m_Name: CaveFrontWall_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1519929334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519929333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1669119665}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1519929335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519929333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010eceba7d7af4e67abaeec65dfc31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingSpaceCorners:
+    topLeft: {x: -4, y: 0, z: 4}
+    topRight: {x: 4, y: 0, z: 4}
+    bottomRight: {x: 4, y: -4, z: 4}
+    bottomLeft: {x: -4, y: -4, z: 4}
+  cam: {fileID: 1034262035}
+  headTrackingEvent: Head_Move
+  projectionType: 0
+  debugColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1519929336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519929333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrNodeType: 1
+  serverIPAddress: 127.0.0.1
+  serverPort: 3490
+  windowXPos: 2960
+  windowYPos: 720
+  windowWidth: 1024
+  windowHeight: 720
+  unityMouseBtnsToVREvents: 0
+  unityMouseMovesToVREvents: 0
+  unityKeysToVREvents: []
+  unityAxesToVREvents: []
+  eventAliases: []
+--- !u!1 &1521336406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521336411}
+  - component: {fileID: 1521336410}
+  - component: {fileID: 1521336409}
+  - component: {fileID: 1521336408}
+  - component: {fileID: 1521336407}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1521336407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521336406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7e8d25a6434459881d2b8f92712c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingEvent: Head_Move
+  translationalOffset: {x: 0, y: 0, z: 0}
+  rotationalOffset: {x: 0, y: 0, z: 0}
+  trackedObjects: []
+--- !u!136 &1521336408
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521336406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &1521336409
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521336406}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1521336410
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521336406}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1521336411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521336406}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8293834, y: -1.8159943, z: 9.872856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1669119664
 GameObject:
@@ -662,9 +1079,13 @@ Transform:
   m_Children:
   - {fileID: 1787831685}
   - {fileID: 1746806674}
+  - {fileID: 1519929334}
   - {fileID: 1947807273}
+  - {fileID: 178174766}
   - {fileID: 767786584}
+  - {fileID: 727534341}
   - {fileID: 2117611525}
+  - {fileID: 124037437}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -681,12 +1102,12 @@ GameObject:
   - component: {fileID: 1746806675}
   - component: {fileID: 1746806677}
   m_Layer: 0
-  m_Name: CaveFrontWall
+  m_Name: CaveFrontWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1746806674
 Transform:
   m_ObjectHideFlags: 0
@@ -716,8 +1137,8 @@ MonoBehaviour:
   trackingSpaceCorners:
     topLeft: {x: -4, y: 4, z: 4}
     topRight: {x: 4, y: 4, z: 4}
-    bottomRight: {x: 4, y: -4, z: 4}
-    bottomLeft: {x: -4, y: -4, z: 4}
+    bottomRight: {x: 4, y: 0, z: 4}
+    bottomLeft: {x: -4, y: 0, z: 4}
   cam: {fileID: 1034262035}
   headTrackingEvent: Head_Move
   projectionType: 0
@@ -737,10 +1158,10 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
-  windowXPos: 0
+  windowXPos: 2960
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -753,7 +1174,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746806673}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cef622e8cbffa47e88efdbdbe90eca74, type: 3}
   m_Name: 
@@ -875,12 +1296,12 @@ GameObject:
   - component: {fileID: 1947807275}
   - component: {fileID: 1947807274}
   m_Layer: 0
-  m_Name: CaveLeftWall
+  m_Name: CaveLeftWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1947807273
 Transform:
   m_ObjectHideFlags: 0
@@ -893,7 +1314,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1669119665}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1947807274
 MonoBehaviour:
@@ -910,8 +1331,8 @@ MonoBehaviour:
   trackingSpaceCorners:
     topLeft: {x: -4, y: 4, z: -4}
     topRight: {x: -4, y: 4, z: 4}
-    bottomRight: {x: -4, y: -4, z: 4}
-    bottomLeft: {x: -4, y: -4, z: -4}
+    bottomRight: {x: -4, y: 0, z: 4}
+    bottomLeft: {x: -4, y: 0, z: -4}
   cam: {fileID: 1034262035}
   headTrackingEvent: Head_Move
   projectionType: 0
@@ -931,10 +1352,10 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
-  windowXPos: 0
+  windowXPos: 1680
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
@@ -1044,12 +1465,12 @@ GameObject:
   - component: {fileID: 2117611527}
   - component: {fileID: 2117611526}
   m_Layer: 0
-  m_Name: CaveFloor
+  m_Name: CaveFloor_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2117611525
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1669119665}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2117611526
 MonoBehaviour:
@@ -1079,8 +1500,8 @@ MonoBehaviour:
   trackingSpaceCorners:
     topLeft: {x: -4, y: -4, z: 4}
     topRight: {x: 4, y: -4, z: 4}
-    bottomRight: {x: 4, y: -4, z: -4}
-    bottomLeft: {x: -4, y: -4, z: -4}
+    bottomRight: {x: 4, y: -4, z: 0}
+    bottomLeft: {x: -4, y: -4, z: 0}
   cam: {fileID: 1034262035}
   headTrackingEvent: Head_Move
   projectionType: 0
@@ -1100,10 +1521,10 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
-  windowXPos: 0
+  windowXPos: 5520
   windowYPos: 0
   windowWidth: 1024
-  windowHeight: 768
+  windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
   unityKeysToVREvents: []
