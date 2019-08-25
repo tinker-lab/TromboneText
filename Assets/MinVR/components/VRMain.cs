@@ -563,8 +563,14 @@ namespace MinVR {
 
         private void ProcessCallbacks(string eventName, VRDataIndex eventData)
 		{
-			// These callbacks are passed the enitre event data structure, which can really contain anything.
-			if (genericCallbacks.ContainsKey(eventName))
+            // These "unfiltered" callbacks are called for every event
+            for (int ucb = 0; ucb < genericCallbacksUnfiltered.Count; ucb++) {
+                genericCallbacksUnfiltered[ucb].Invoke(new VREvent(eventName, eventData));
+            }
+
+
+            // These callbacks are passed the enitre event data structure, which can really contain anything.
+            if (genericCallbacks.ContainsKey(eventName))
 			{
 				for (int cb = 0; cb < genericCallbacks[eventName].Count; cb++)
 				{

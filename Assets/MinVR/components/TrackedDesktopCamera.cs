@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MinVR {
 
-    public class VRTrackedDesktopCamera : MonoBehaviour {
+    public class TrackedDesktopCamera : MonoBehaviour {
         [Tooltip("Name of the VREvent to listen for for tracking updates (e.g., Head_Move)")]
         public string trackingEvent = "Head_Move";
 

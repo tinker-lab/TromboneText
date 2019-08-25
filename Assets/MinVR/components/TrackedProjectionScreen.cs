@@ -22,7 +22,7 @@ namespace MinVR {
 	 * http://csc.lsu.edu/~kooima/articles/genperspective/ 
 	 */
     [ExecuteAlways]
-    public class VRTrackedProjectionScreen : MonoBehaviour {
+    public class TrackedProjectionScreen : MonoBehaviour {
 
         [System.Serializable]
         public class ScreenCorners {
@@ -118,13 +118,13 @@ namespace MinVR {
 
             //// for left eye...
             if (cam.stereoTargetEye == StereoTargetEyeMask.Both || cam.stereoTargetEye == StereoTargetEyeMask.Left) {
-                Vector3 pe = getLeftEyePosition(); // eye position
+                Vector3 pe = GetLeftEyePosition(); // eye position
                 cam.SetStereoProjectionMatrix(Camera.StereoscopicEye.Left, GetStereoProjectionMatrix(pe, vr, vu, vn));
                 cam.SetStereoViewMatrix(Camera.StereoscopicEye.Left, GetStereoViewMatrix(pe, vr, vu, vn));
             }
             //// for right eye...
             if (cam.stereoTargetEye == StereoTargetEyeMask.Both || cam.stereoTargetEye == StereoTargetEyeMask.Right) {
-                Vector3 pe = getRightEyePosition(); // eye position
+                Vector3 pe = GetRightEyePosition(); // eye position
                 cam.SetStereoProjectionMatrix(Camera.StereoscopicEye.Right, GetStereoProjectionMatrix(pe, vr, vu, vn));
                 cam.SetStereoViewMatrix(Camera.StereoscopicEye.Right, GetStereoViewMatrix(pe, vr, vu, vn));
             }
@@ -287,13 +287,13 @@ namespace MinVR {
             return p;
         }
 
-        Vector3 getLeftEyePosition() {
+        public Vector3 GetLeftEyePosition() {
             // offset to the left by 1/2 the interocular distance
             Vector3 offset = cam.transform.TransformVector(new Vector3(-cam.stereoSeparation / 2f, 0f, 0f));
             return cam.transform.position + offset;
         }
 
-        Vector3 getRightEyePosition() {
+        public Vector3 GetRightEyePosition() {
             // offset to the right by 1/2 the interocular distance
             Vector3 offset = cam.transform.TransformVector(new Vector3(cam.stereoSeparation / 2f, 0f, 0f));
             return cam.transform.position + offset;

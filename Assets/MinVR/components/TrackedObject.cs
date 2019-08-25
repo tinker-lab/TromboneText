@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MinVR {
 
-    public class VRTrackedObject : MonoBehaviour {
+    public class TrackedObject : MonoBehaviour {
 
         [Tooltip("Name of the VREvent to listen for for tracking updates (e.g., Head_Move, LHand_Move, RHand_Move, ...)")]
         public string trackingEvent = "LHand_Move";

@@ -12,7 +12,7 @@ namespace MinVR {
 	 * moving the mouse vertically to change the 3D depth. Hold 'x', 'y', or 'z' while moving the mouse horizontally
 	 * to rotate the tracker around the X, Y, or Z axis. 
 	 */
-    public class VRFakeTrackingInput : MonoBehaviour, VREventGenerator {
+    public class FakeTrackingInput : MonoBehaviour, VREventGenerator {
         [Tooltip("Fake head tracking with arrow keys. 'up' moves forward, 'down' moves backward, 'left' rotates left, 'right' rotates right.")]
         public string fakeHeadTrackerEvent = "Head_Move";
 
