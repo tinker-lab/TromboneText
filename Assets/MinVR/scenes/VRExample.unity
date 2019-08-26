@@ -342,7 +342,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 5520
   windowYPos: 720
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 1680
   windowYPos: 720
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 4240
   windowYPos: 720
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 4240
   windowYPos: 0
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -995,7 +995,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 2960
   windowYPos: 720
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 2960
   windowYPos: 0
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -1223,10 +1223,10 @@ MonoBehaviour:
   vrNodeType: 0
   serverIPAddress: 127.0.0.1
   serverPort: 3490
-  windowXPos: 0
-  windowYPos: 0
-  windowWidth: 1024
-  windowHeight: 768
+  windowXPos: 1700
+  windowYPos: 50
+  windowWidth: 200
+  windowHeight: 200
   unityMouseBtnsToVREvents: 1
   unityMouseMovesToVREvents: 1
   unityKeysToVREvents: []
@@ -1306,7 +1306,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 1680
   windowYPos: 0
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   serverPort: 3490
   windowXPos: 5520
   windowYPos: 0
-  windowWidth: 1024
+  windowWidth: 1280
   windowHeight: 720
   unityMouseBtnsToVREvents: 0
   unityMouseMovesToVREvents: 0

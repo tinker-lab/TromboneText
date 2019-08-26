@@ -381,7 +381,8 @@ namespace MinVR {
 
             // 3. INITIALIZE VRMAIN WITH SETTINGS FROM THE VRDEVICE
 
-			WindowUtils.SetPosition(vrDevice.windowXPos, vrDevice.windowYPos, vrDevice.windowWidth, vrDevice.windowHeight);
+            WindowUtils.RemoveBorder();
+			WindowUtils.SetPositionAndSize(vrDevice.windowXPos, vrDevice.windowYPos, vrDevice.windowWidth, vrDevice.windowHeight);
 
 			if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetClient) {
 				_netClient = new VRNetClient(vrDevice.serverIPAddress, vrDevice.serverPort);
