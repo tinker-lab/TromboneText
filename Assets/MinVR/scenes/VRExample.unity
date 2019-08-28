@@ -534,6 +534,71 @@ MonoBehaviour:
   translationalOffset: {x: 0, y: 0, z: 0}
   rotationalOffset: {x: 0, y: 0, z: 0}
   trackedObjects: []
+--- !u!1 &397290324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397290326}
+  - component: {fileID: 397290325}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &397290325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397290324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ddc462ea5c3480e8cd70db7a110a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Main Menu
+  items:
+  - Item 1
+  - Item 2
+  eventsToGenerate:
+  - MainMenu1
+  - MainMenu2
+  trackerEvent: Hand_Move
+  buttonDownEvent: MouseBtnLeft_Down
+  buttonUpEvent: MouseBtnLeft_Up
+  titleColor: {r: 1, g: 1, b: 1, a: 1}
+  titleBGColor: {r: 0.33333334, g: 0.3254902, b: 0.3254902, a: 1}
+  titleHighColor: {r: 0.07450981, g: 0, b: 0.9372549, a: 1}
+  itemColor: {r: 0, g: 0, b: 0, a: 1}
+  itemBGColor: {r: 0.9019608, g: 0.9019608, b: 1, a: 1}
+  itemHighColor: {r: 1, g: 0.7647059, b: 0, a: 1}
+  pressColor: {r: 0.8862745, g: 0, b: 0.09019608, a: 1}
+  textSizeInWorldUnits: 0.3
+  itemSep: 0.1
+  padding: {x: 0.05, y: 0.05}
+  depth: 0.3
+  zEpsilon: 0.001
+--- !u!4 &397290326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397290324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727534340
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +898,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 0
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
@@ -1107,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 1
+  vrNodeType: 0
   serverIPAddress: 127.0.0.1
   serverPort: 3490
   windowXPos: 2960
@@ -1399,7 +1464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979492498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.42, y: -0.109375, z: 4.09}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

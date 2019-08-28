@@ -68,170 +68,170 @@ namespace MinVR {
      */
     public class VRMain : MonoBehaviour {
 
-		// Use this to access to the singleton instance of VRMain that persists across scene loads/unloads
-		public static VRMain Instance { get { return instance; } }
-		private static VRMain instance;
+        // Use this to access to the singleton instance of VRMain that persists across scene loads/unloads
+        public static VRMain Instance { get { return instance; } }
+        private static VRMain instance;
 
-		[Tooltip("To specify a default device to use if no command line '-vrdevice DeviceName' option is specified " +
-            "you can either drag a default device here or add a VRDevice component directly to VRMain.  Note that "+
+        [Tooltip("To specify a default device to use if no command line '-vrdevice DeviceName' option is specified " +
+            "you can either drag a default device here or add a VRDevice component directly to VRMain.  Note that " +
             "these defaults will be overwritten if '-vrdevice DeviceName' is specified on the command line.")]
-		public VRDevice defaultVRDevice;
+        public VRDevice defaultVRDevice;
 
-		[Tooltip("For debugging only -- Command line arguments to use when running in the Unity editor only.")]
-		public string editorCmdLineArgs = "";
+        [Tooltip("For debugging only -- Command line arguments to use when running in the Unity editor only.")]
+        public string editorCmdLineArgs = "";
 
-		[Tooltip("For debugging only -- Print all VREvents to Debug.Log -- slow!")]
-		public bool debugLogEvents = false;
-
-
-
-		// -- Delegates for VREvent callbacks --
-
-		// Generic callback is a function that takes one VREvent parameter
-		public delegate void OnVREventDelegate(VREvent e);
-
-		// Analog event callback is a function that takes one float value
-		public delegate void OnVRAnalogEventDelegate(float value);
-
-		// Button down callback does not have any parameters
-		public delegate void OnVRButtonDownEventDelegate();
-
-		// Button up callback does not have any parameters
-		public delegate void OnVRButtonUpEventDelegate();
-
-		// Cursor move event callbacks take 2 parameters both Vector2.  The raw position is typically
-		// reported in pixels.  The normalized position ranges from -1 to +1 in x and y.
-		public delegate void OnVRCursorEventDelegate(Vector2 rawPos, Vector2 normalizedPos);
-
-		// Tracker event callbacks take 2 parameters that report the position and rotation of the
-		// tracker.
-		public delegate void OnVRTrackerEventDelegate(Vector3 pos, Quaternion rot);
+        [Tooltip("For debugging only -- Print all VREvents to Debug.Log -- slow!")]
+        public bool debugLogEvents = false;
 
 
+
+        // -- Delegates for VREvent callbacks --
+
+        // Generic callback is a function that takes one VREvent parameter
+        public delegate void OnVREventDelegate(VREvent e);
+
+        // Analog event callback is a function that takes one float value
+        public delegate void OnVRAnalogEventDelegate(float value);
+
+        // Button down callback does not have any parameters
+        public delegate void OnVRButtonDownEventDelegate();
+
+        // Button up callback does not have any parameters
+        public delegate void OnVRButtonUpEventDelegate();
+
+        // Cursor move event callbacks take 2 parameters both Vector2.  The raw position is typically
+        // reported in pixels.  The normalized position ranges from -1 to +1 in x and y.
+        public delegate void OnVRCursorEventDelegate(Vector2 rawPos, Vector2 normalizedPos);
+
+        // Tracker event callbacks take 2 parameters that report the position and rotation of the
+        // tracker.
+        public delegate void OnVRTrackerEventDelegate(Vector3 pos, Quaternion rot);
 
 
 
 
-		// -- Routines for registering callbacks --
-
-		// Register a callback using this method in order to receive a callback for every single
-		// VR event that occurs.
-		// Example:
-		//  public void OnVREvent(VREvent e) {
-		//    Debug.Log(e.ToString());
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVREventCallback(this.OnVREvent);
-		//  }
-		public void AddOnVREventCallback(OnVREventDelegate func) {
-			genericCallbacksUnfiltered.Add(func);
-		}
 
 
-		// Register a callback using this method in order to receive a callback for all
-		// VR events of the given name.
-		// Example:
-		//  public void OnFrameStart(VREvent e) {
-		//    Debug.Log(e.ToString());
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVREventCallback("FrameStart", this.OnFrameStart);
-		//  }
-		public void AddOnVREventCallback(string eventName, OnVREventDelegate func) {
-			if (!genericCallbacks.ContainsKey(eventName)) {
-				genericCallbacks.Add(eventName, new List<OnVREventDelegate>());
-			}
-			genericCallbacks[eventName].Add(func);
-		}
+        // -- Routines for registering callbacks --
+
+        // Register a callback using this method in order to receive a callback for every single
+        // VR event that occurs.
+        // Example:
+        //  public void OnVREvent(VREvent e) {
+        //    Debug.Log(e.ToString());
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVREventCallback(this.OnVREvent);
+        //  }
+        public void AddOnVREventCallback(OnVREventDelegate func) {
+            genericCallbacksUnfiltered.Add(func);
+        }
 
 
-		// Register a callback using this method in order to receive a callback for analog
-		// events of the specified name.
-		// Example:
-		//  public void OnSliderUpdate(float val) {
-		//    Debug.Log("New slider value = " + val);
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVRAnalogUpdateCallback("ArduinoAnalog01_Update", this.OnSliderUpdate);
-		//  }
-		public void AddOnVRAnalogUpdateCallback(string eventName, OnVRAnalogEventDelegate func) {
-			if (!analogCallbacks.ContainsKey(eventName)) {
-				analogCallbacks.Add(eventName, new List<OnVRAnalogEventDelegate>());
-			}
-			analogCallbacks[eventName].Add(func);
-		}
+        // Register a callback using this method in order to receive a callback for all
+        // VR events of the given name.
+        // Example:
+        //  public void OnFrameStart(VREvent e) {
+        //    Debug.Log(e.ToString());
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVREventCallback("FrameStart", this.OnFrameStart);
+        //  }
+        public void AddOnVREventCallback(string eventName, OnVREventDelegate func) {
+            if (!genericCallbacks.ContainsKey(eventName)) {
+                genericCallbacks.Add(eventName, new List<OnVREventDelegate>());
+            }
+            genericCallbacks[eventName].Add(func);
+        }
 
 
-		// Register a callback using this method in order to receive a callback for button down
-		// events of the specified name.
-		// Example:
-		//  public void OnWandBtnDown() {
-		//    Debug.Log("Button Down!");
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVRButtonDownCallback("WandBtn1_Down", this.OnWandBtnDown);
-		//  }
-		public void AddOnVRButtonDownCallback(string eventName, OnVRButtonDownEventDelegate func) {
-			if (!buttonDownCallbacks.ContainsKey(eventName)) {
-				buttonDownCallbacks.Add(eventName, new List<OnVRButtonDownEventDelegate>());
-			}
-			buttonDownCallbacks[eventName].Add(func);
-		}
+        // Register a callback using this method in order to receive a callback for analog
+        // events of the specified name.
+        // Example:
+        //  public void OnSliderUpdate(float val) {
+        //    Debug.Log("New slider value = " + val);
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVRAnalogUpdateCallback("ArduinoAnalog01_Update", this.OnSliderUpdate);
+        //  }
+        public void AddOnVRAnalogUpdateCallback(string eventName, OnVRAnalogEventDelegate func) {
+            if (!analogCallbacks.ContainsKey(eventName)) {
+                analogCallbacks.Add(eventName, new List<OnVRAnalogEventDelegate>());
+            }
+            analogCallbacks[eventName].Add(func);
+        }
 
-		// Register a callback using this method in order to receive a callback for button up
-		// events of the specified name.
-		// Example:
-		//  public void OnWandBtnUp() {
-		//    Debug.Log("Button Down!");
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVRButtonUpCallback("WandBtn1_Up", this.OnWandBtnUp);
-		//  }
-		public void AddOnVRButtonUpCallback(string eventName, OnVRButtonUpEventDelegate func) {
-			if (!buttonUpCallbacks.ContainsKey(eventName)) {
-				buttonUpCallbacks.Add(eventName, new List<OnVRButtonUpEventDelegate>());
-			}
-			buttonUpCallbacks[eventName].Add(func);
-		}
 
-		// Register a callback using this method in order to receive a callback for cursor move
-		// events of the specified name.
-		// Example:
-		//  public void OnJoystick(Vector2 pos, Vector2 normalizedPos) {
-		//    Debug.Log("Joystick update: " + normalizedPos);
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVRCursorMoveCallback("Joystick01_Move", this.OnJoystick);
-		//  }
-		public void AddOnVRCursorMoveCallback(string eventName, OnVRCursorEventDelegate func) {
-			if (!cursorCallbacks.ContainsKey(eventName)) {
-				cursorCallbacks.Add(eventName, new List<OnVRCursorEventDelegate>());
-			}
-			cursorCallbacks[eventName].Add(func);
-		}
+        // Register a callback using this method in order to receive a callback for button down
+        // events of the specified name.
+        // Example:
+        //  public void OnWandBtnDown() {
+        //    Debug.Log("Button Down!");
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVRButtonDownCallback("WandBtn1_Down", this.OnWandBtnDown);
+        //  }
+        public void AddOnVRButtonDownCallback(string eventName, OnVRButtonDownEventDelegate func) {
+            if (!buttonDownCallbacks.ContainsKey(eventName)) {
+                buttonDownCallbacks.Add(eventName, new List<OnVRButtonDownEventDelegate>());
+            }
+            buttonDownCallbacks[eventName].Add(func);
+        }
 
-		// Register a callback using this method in order to receive a callback for tracker move
-		// events of the specified name.
-		// Example:
-		//  public void OnHandMove(Vector3 pos, Quaternion rot) {
-		//    Debug.Log("Hand now located at: " + pos);
-		//  }
-		//
-		//  public void Start() {
-		//    MinVR.VRMain.Instance.AddOnVRTrackerMoveCallback("Hand_Move", this.OnHandMove);
-		//  }
-		public void AddOnVRTrackerMoveCallback(string eventName, OnVRTrackerEventDelegate func) {
-			if (!trackerCallbacks.ContainsKey(eventName)) {
-				trackerCallbacks.Add(eventName, new List<OnVRTrackerEventDelegate>());
-			}
-			trackerCallbacks[eventName].Add(func);
-		}
+        // Register a callback using this method in order to receive a callback for button up
+        // events of the specified name.
+        // Example:
+        //  public void OnWandBtnUp() {
+        //    Debug.Log("Button Down!");
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVRButtonUpCallback("WandBtn1_Up", this.OnWandBtnUp);
+        //  }
+        public void AddOnVRButtonUpCallback(string eventName, OnVRButtonUpEventDelegate func) {
+            if (!buttonUpCallbacks.ContainsKey(eventName)) {
+                buttonUpCallbacks.Add(eventName, new List<OnVRButtonUpEventDelegate>());
+            }
+            buttonUpCallbacks[eventName].Add(func);
+        }
+
+        // Register a callback using this method in order to receive a callback for cursor move
+        // events of the specified name.
+        // Example:
+        //  public void OnJoystick(Vector2 pos, Vector2 normalizedPos) {
+        //    Debug.Log("Joystick update: " + normalizedPos);
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVRCursorMoveCallback("Joystick01_Move", this.OnJoystick);
+        //  }
+        public void AddOnVRCursorMoveCallback(string eventName, OnVRCursorEventDelegate func) {
+            if (!cursorCallbacks.ContainsKey(eventName)) {
+                cursorCallbacks.Add(eventName, new List<OnVRCursorEventDelegate>());
+            }
+            cursorCallbacks[eventName].Add(func);
+        }
+
+        // Register a callback using this method in order to receive a callback for tracker move
+        // events of the specified name.
+        // Example:
+        //  public void OnHandMove(Vector3 pos, Quaternion rot) {
+        //    Debug.Log("Hand now located at: " + pos);
+        //  }
+        //
+        //  public void Start() {
+        //    MinVR.VRMain.Instance.AddOnVRTrackerMoveCallback("Hand_Move", this.OnHandMove);
+        //  }
+        public void AddOnVRTrackerMoveCallback(string eventName, OnVRTrackerEventDelegate func) {
+            if (!trackerCallbacks.ContainsKey(eventName)) {
+                trackerCallbacks.Add(eventName, new List<OnVRTrackerEventDelegate>());
+            }
+            trackerCallbacks[eventName].Add(func);
+        }
 
 
         // Use this to register a class that implements the VREventGenerator interface.  VRMain will then
@@ -239,14 +239,21 @@ namespace MinVR {
         // are then synchronized across all nodes (if running on a network) and event callbacks are called
         // as usual.
         public void AddEventGenerator(VREventGenerator dev) {
-			_inputDevices.Add(dev);
-		}
+            _inputDevices.Add(dev);
+        }
+    
 
+        // As an alternative to making your class a virtual input device that gets polled each frame for
+        // new events by implementing the "EventGenerator" interface, if you're class only occasionally
+        // generates a new event, you might prefer to just queue the event directly with VRMain by calling
+        // this function.  The event will be processed the following frame.
+        public void QueueEvent(VREvent e) {
+            _queuedEvents.Add(e);
+        }
 
+        /** Implementation Details Below this Point **/
 
-		/** Implementation Details Below this Point **/
-
-		private VRDevice vrDevice;
+        private VRDevice vrDevice;
 
 		// Storage for event callbacks
 		private List<OnVREventDelegate> genericCallbacksUnfiltered = new List<OnVREventDelegate>();
@@ -268,6 +275,7 @@ namespace MinVR {
 		private List<VREventGenerator> _inputDevices = new List<VREventGenerator>();
 
 		private List<VREvent> _inputEvents = new List<VREvent>();
+        private List<VREvent> _queuedEvents = new List<VREvent>();
 
 		private bool _initialized = false;
 
@@ -399,10 +407,17 @@ namespace MinVR {
 				Initialize();
 			}
 
-
             // 1. COLLECT ANY NEW INPUT
-			// Add input events from Unity's input system, converting them to VREvents
-			AddUnityInputEvents(ref this._inputEvents);
+            _inputEvents.Clear();
+
+            // Add any user generated events queued since the last frame.
+            for (int i=0; i<_queuedEvents.Count; i++) {
+                _inputEvents.Add(_queuedEvents[i]);
+            }
+            _queuedEvents.Clear();
+
+            // Add input events from Unity's input system, converting them to VREvents
+            AddUnityInputEvents(ref this._inputEvents);
 
 			// Add input events from this client's input devices (such as fake input events)
 			for (int i = 0; i < this._inputDevices.Count; i++) {
@@ -649,7 +664,6 @@ namespace MinVR {
 				_netClient.SynchronizeSwapBuffersAcrossAllNodes ();
                 _state = NetState.PreUpdateNext;
             }
-            _inputEvents.Clear();
 		}
 
 
