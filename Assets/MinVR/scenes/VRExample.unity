@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVRDevice: {fileID: 0}
-  editorCmdLineArgs: -vrdevice Desktop
+  editorCmdLineArgs: -vrdevice CaveFrontWall_Top
   debugLogEvents: 0
 --- !u!4 &1475157710
 Transform:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 0
+  vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
   windowXPos: 2960
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746806673}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cef622e8cbffa47e88efdbdbe90eca74, type: 3}
   m_Name: 

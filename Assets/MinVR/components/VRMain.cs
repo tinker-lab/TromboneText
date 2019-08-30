@@ -456,13 +456,13 @@ namespace MinVR {
 
 
                 // Call all registered callback functions
-				ProcessCallbacks(_inputEvents[i].Name, _inputEvents[i].DataIndex);
+				ProcessCallbacks(_inputEvents[i].Name, _inputEvents[i]);
 
 				if (aliases.Count > 0)
 				{
 					for (int j = 0; j < aliases.Count; j++)
 					{
-						ProcessCallbacks(aliases[j], _inputEvents[i].DataIndex);
+						ProcessCallbacks(aliases[j], _inputEvents[i]);
 					}
 				}
 			}
@@ -477,39 +477,39 @@ namespace MinVR {
 			{
 				if (Input.GetMouseButtonDown(0))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnLeft_Down");
-					data.AddData("EventType", "ButtonDown");
-					eventList.Add(new VREvent("MouseBtnLeft_Down", data));
+                    VREvent e = new VREvent("MouseBtnLeft_Down");
+                    e.AddData("EventType", "ButtonDown");
+					eventList.Add(e);
 				}
 				if (Input.GetMouseButtonDown(2))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnMiddle_Down");
-					data.AddData("EventType", "ButtonDown");
-					eventList.Add(new VREvent("MouseBtnMiddle_Down", data));
+                    VREvent e = new VREvent("MouseBtnMiddle_Down");
+                    e.AddData("EventType", "ButtonDown");
+                    eventList.Add(e);
 				}
 				if (Input.GetMouseButtonDown(1))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnRight_Down");
-					data.AddData("EventType", "ButtonDown");
-					eventList.Add(new VREvent("MouseBtnRight_Down", data));
+                    VREvent e = new VREvent("MouseBtnRight_Down");
+                    e.AddData("EventType", "ButtonDown");
+                    eventList.Add(e);
 				}
 				if (Input.GetMouseButtonUp(0))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnLeft_Up");
-					data.AddData("EventType", "ButtonUp");
-					eventList.Add(new VREvent("MouseBtnLeft_Up", data));
+                    VREvent e = new VREvent("MouseBtnLeft_Up");
+                    e.AddData("EventType", "ButtonUp");
+                    eventList.Add(e);
 				}
 				if (Input.GetMouseButtonUp(2))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnMiddle_Up");
-					data.AddData("EventType", "ButtonUp");
-					eventList.Add(new VREvent("MouseBtnMiddle_Up", data));
+                    VREvent e = new VREvent("MouseBtnMiddle_Up");
+                    e.AddData("EventType", "ButtonUp");
+                    eventList.Add(e);
 				}
 				if (Input.GetMouseButtonUp(1))
 				{
-					VRDataIndex data = new VRDataIndex("MouseBtnRight_Up");
-					data.AddData("EventType", "ButtonUp");
-					eventList.Add(new VREvent("MouseBtnRight_Up", data));
+                    VREvent e = new VREvent("MouseBtnRight_Up");
+                    e.AddData("EventType", "ButtonUp");
+                    eventList.Add(e);
 				}
 			}
 
@@ -521,11 +521,11 @@ namespace MinVR {
 				if (pos != lastMousePos)
 				{
 					Vector3 npos = new Vector3(pos[0] / Screen.width, pos[1] / Screen.height, 0.0f);
-					VRDataIndex data = new VRDataIndex("Mouse_Move");
-					data.AddData("EventType", "CursorMove");
-					data.AddData("Position", pos);
-					data.AddData("NormalizedPosition", npos);
-					eventList.Add(new VREvent("Mouse_Move", data));
+                    VREvent e = new VREvent("Mouse_Move");
+                    e.AddData("EventType", "CursorMove");
+					e.AddData("Position", VRConvert.ToFloatArray(pos));
+					e.AddData("NormalizedPosition", VRConvert.ToFloatArray(npos));
+					eventList.Add(e);
 					lastMousePos = pos;
 				}
 			}
@@ -536,9 +536,9 @@ namespace MinVR {
 			{
 				if (Input.GetKeyDown(vrDevice.unityKeysToVREvents[i]))
 				{
-					VRDataIndex data = new VRDataIndex("Kbd" + vrDevice.unityKeysToVREvents[i] + "_Down");
-					data.AddData("EventType", "ButtonDown");
-					eventList.Add(new VREvent(data.Name, data));
+                    VREvent e = new VREvent("Kbd" + vrDevice.unityKeysToVREvents[i] + "_Down");
+					e.AddData("EventType", "ButtonDown");
+					eventList.Add(e);
 				}
 				if (Input.GetKeyDown(vrDevice.unityKeysToVREvents[i]))
 				{
