@@ -10,23 +10,23 @@ namespace MinVR {
 
         // NETWORKING SETTINGS:
 
-        public enum VRNodeType { StandAlone, NetClient /*, NetServer */ };  // TODO: Add NetServer option
+        public enum VRNodeType { StandAlone, NetClient, NetServer };
 
         [Tooltip("StandAlone does not use a network connection.  " +
             "All NetClient(s) must connect to a single MinVR server upon startup." +
-            /* "NetServer acts as the single server for one or more NetClients." + */
-            "A command line option of the form '-vrnodetype NetClient' will override this value.")]
+            "NetServer acts as the single server for one or more NetClients.")]
         public VRNodeType vrNodeType = VRNodeType.StandAlone;
 
 
-        [Tooltip("If vrNodeType==NetClient, then this is used as the ip address of the server to connect to.  " +
-            "A command line option of the form '-serverip 127.0.0.1' will override this value.")]
+        [Tooltip("If vrNodeType==NetClient, then this is used as the ip address of the server to connect to.")]
         public string serverIPAddress = "127.0.0.1";
 
-        [Tooltip("If vrNodeType==NetClient, then this is used as the server's port number.  " +
-            "A command line option of the form '-serverport 3490' will override this value.")]
+        [Tooltip("If vrNodeType==NetClient, then this is the port to connect to on the server." +
+            "If vrNodeType==NetServer, then this is the port for the server to run on.")]
         public int serverPort = 3490;
 
+        [Tooltip("If vrNodeType==NetServer, then this is the number of clients that should connect to it.")]
+        public int numClients = 1;
 
 
         // GRAPHICS WINDOW SETTINGS:

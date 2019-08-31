@@ -264,7 +264,8 @@ namespace MinVR {
 		private Dictionary<string, List<OnVRCursorEventDelegate>> cursorCallbacks = new Dictionary<string, List<OnVRCursorEventDelegate>>();
 		private Dictionary<string, List<OnVRTrackerEventDelegate>> trackerCallbacks = new Dictionary<string, List<OnVRTrackerEventDelegate>>();
 
-		private VRNetClient _netClient;
+        private VRNetInterface _netInterface;
+		//private VRNetClient _netClient;
 
 		// When Unity starts up, Update seems to be called twice before we reach the EndOfFrame callback, so we maintain
 		// a state variable here to make sure that we don't request events twice before requesting swapbuffers.
@@ -393,10 +394,13 @@ namespace MinVR {
 			WindowUtils.SetPositionAndSize(vrDevice.windowXPos, vrDevice.windowYPos, vrDevice.windowWidth, vrDevice.windowHeight);
 
 			if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetClient) {
-				_netClient = new VRNetClient(vrDevice.serverIPAddress, vrDevice.serverPort);
+				_netInterface = new VRNetClient(vrDevice.serverIPAddress, vrDevice.serverPort);
 			}
+            else if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetServer) {
+                _netInterface = new VRNetServer(vrDevice.serverPort, vrDevice.numClients);
+            }
 
-			_initialized = true;
+            _initialized = true;
 		}
 
 
@@ -404,9 +408,7 @@ namespace MinVR {
 
 		// AT THE START OF EACH FRAME: SYNCHRONIZE INPUT EVENTS AND CALL ONVREVENT CALLBACK FUNCTIONS
 		private void PreUpdate() {
-			if (!_initialized) {
-				Initialize();
-			}
+
 
             // 1. COLLECT ANY NEW INPUT
             _inputEvents.Clear();
@@ -426,10 +428,11 @@ namespace MinVR {
 			}
 
 
+
             // 2. SYNCHRONIZE INPUT EVENTS ACROSS ALL NODES
 			// Synchronize with the server
-			if (_netClient != null) {
-				_netClient.SynchronizeInputEventsAcrossAllNodes(ref _inputEvents);
+			if (_netInterface != null) {
+				_netInterface.SynchronizeInputEventsAcrossAllNodes(ref _inputEvents);
 				_state = NetState.PostRenderNext;
 			}
 
@@ -664,8 +667,8 @@ namespace MinVR {
 
 		// AT END OF EACH FRAME:  WAIT FOR THE SIGNAL THAT ALL CLIENTS ARE ALSO READY, THEN SWAPBUFFERS
 		private void PostRender() {
-			if (_netClient != null) {
-				_netClient.SynchronizeSwapBuffersAcrossAllNodes ();
+			if (_netInterface != null) {
+				_netInterface.SynchronizeSwapBuffersAcrossAllNodes();
                 _state = NetState.PreUpdateNext;
             }
 		}
@@ -681,6 +684,11 @@ namespace MinVR {
             }
         }
 
+        void Start() {
+            if (!_initialized) {
+                Initialize();
+            }
+        }
 
         // See important note above... this Update() method MUST be called before any others in your Unity App.
         void Update() {

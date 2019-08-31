@@ -11,12 +11,7 @@ using System.Threading;
 
 namespace MinVR {
 
-    public class VRNetClient {
-	
-	    // unique identifiers for different network messages
-	    static readonly byte[] INPUT_EVENTS_MSG = {1};
-	    static readonly byte[] SWAP_BUFFERS_REQUEST_MSG = {2};
-	    static readonly byte[] SWAP_BUFFERS_NOW_MSG = {3};
+    public class VRNetClient : VRNetInterface {
 	
 	    TcpClient client;
 	    NetworkStream stream;
@@ -27,6 +22,7 @@ namespace MinVR {
             while (!success) {
                 try {
                     client = new TcpClient(AddressFamily.InterNetwork);
+                    client.NoDelay = true;
                     client.Connect(IPAddress.Parse(serverIP), serverPort);
                     stream = client.GetStream();
                     success = client.Connected;
@@ -102,7 +98,7 @@ namespace MinVR {
             }
             // this message consists only of a 1-byte header
             try {
-                stream.Write(SWAP_BUFFERS_REQUEST_MSG, 0, 1);
+                stream.Write(VRNet.SWAP_BUFFERS_REQUEST_MSG, 0, 1);
             }
             catch (Exception e) {
                 Console.WriteLine("Exception: {0}", e);
@@ -119,7 +115,7 @@ namespace MinVR {
                 return;
             }
             try {
-                stream.Write(INPUT_EVENTS_MSG, 0, 1);
+                stream.Write(VRNet.INPUT_EVENTS_MSG, 0, 1);
             }
             catch (Exception e) {
                 Console.WriteLine("Exception: {0}", e);
@@ -183,20 +179,20 @@ namespace MinVR {
 	    void WaitForAndReceiveSwapBuffersRequest() {
             // Debug.Log("WaitForAndReceiveSwapBuffersRequest");
             // this message consists only of a 1-byte header
-            WaitForAndReceiveMessageHeader(SWAP_BUFFERS_REQUEST_MSG);
+            WaitForAndReceiveMessageHeader(VRNet.SWAP_BUFFERS_REQUEST_MSG);
 	    }
 	
 	    void WaitForAndReceiveSwapBuffersNow() {
             // Debug.Log("WaitForAndReceiveSwapBuffersNow");
             // this message consists only of a 1-byte header
-            WaitForAndReceiveMessageHeader(SWAP_BUFFERS_NOW_MSG);
+            WaitForAndReceiveMessageHeader(VRNet.SWAP_BUFFERS_NOW_MSG);
 	    }
 		
 	    void WaitForAndReceiveInputEvents(ref List<VREvent> inputEvents) {
             // Debug.Log("WaitForAndReceiveInputEvents");
 
             // 1. receive 1-byte message header
-            WaitForAndReceiveMessageHeader(INPUT_EVENTS_MSG);
+            WaitForAndReceiveMessageHeader(VRNet.INPUT_EVENTS_MSG);
 		
 		    // 2. receive int that tells us the size of the data portion of the message in bytes
 		    Int32 dataSize = ReadInt32();

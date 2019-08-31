@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
+using System.IO;
 
 
 namespace MinVR {
@@ -35,12 +37,12 @@ namespace MinVR {
             _name = name;
         }
 
+
         // Creates a VREvent from an XML-formatted description.  xmlDescription is modified as part of the constructor.
         // Following the current C++ implementation of MinVR, events are serialized in an XML defined by the C++
         // VRDataIndex class.  This constructor pops the first <MyEventName>...</MyEventName> field off of xmlDescription
         // to create the event and xmlDescription is set to whatever remains in the string.
         public VREvent(ref string xmlDescription) {
-
             // TODO 1: It might be faster to use C#'s XMLReader object to parse the XML.  The XMLUtils class
             // was never intended to be used during the rendering loop, just for config files.
 

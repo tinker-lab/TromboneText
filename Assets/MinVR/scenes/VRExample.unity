@@ -340,6 +340,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 5520
   windowYPos: 720
   windowWidth: 1280
@@ -417,6 +418,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 1680
   windowYPos: 720
   windowWidth: 1280
@@ -667,6 +669,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 4240
   windowYPos: 720
   windowWidth: 1280
@@ -852,6 +855,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 4240
   windowYPos: 0
   windowWidth: 1280
@@ -975,7 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultVRDevice: {fileID: 0}
   editorCmdLineArgs: -vrdevice Desktop
-  debugLogEvents: 0
+  debugLogEvents: 1
 --- !u!4 &1475157710
 Transform:
   m_ObjectHideFlags: 0
@@ -1058,6 +1062,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 2960
   windowYPos: 720
   windowWidth: 1280
@@ -1117,7 +1122,6 @@ GameObject:
   - component: {fileID: 1746806674}
   - component: {fileID: 1746806676}
   - component: {fileID: 1746806675}
-  - component: {fileID: 1746806677}
   m_Layer: 0
   m_Name: CaveFrontWall_Top
   m_TagString: Untagged
@@ -1172,39 +1176,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 1
+  vrNodeType: 0
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 2960
   windowYPos: 0
   windowWidth: 1280
   windowHeight: 720
-  unityMouseBtnsToVREvents: 0
-  unityMouseMovesToVREvents: 0
+  unityMouseBtnsToVREvents: 1
+  unityMouseMovesToVREvents: 1
   unityKeysToVREvents: []
   unityAxesToVREvents: []
   eventAliases: []
---- !u!114 &1746806677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746806673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef622e8cbffa47e88efdbdbe90eca74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fakeHeadTrackerEvent: Head_Move
-  initialHeadPos: {x: 0, y: 1, z: -2}
-  initialHeadRot: {x: 0, y: 0, z: 0}
-  fakeTracker1Event: Hand_Move
-  initialTracker1Pos: {x: 0, y: 0, z: 0}
-  initialTracker1Rot: {x: 0, y: 0, z: 0}
-  fakeTracker2Event: Brush_Move
-  initialTracker2Pos: {x: 0, y: 0, z: 0}
-  initialTracker2Rot: {x: 0, y: 0, z: 0}
 --- !u!1 &1787831684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,10 +1237,10 @@ MonoBehaviour:
   fakeHeadTrackerEvent: Head_Move
   initialHeadPos: {x: 0, y: 1, z: -2}
   initialHeadRot: {x: 0, y: 0, z: 0}
-  fakeTracker1Event: LHand_Move
+  fakeTracker1Event: Hand_Move
   initialTracker1Pos: {x: 0, y: 0, z: 0}
   initialTracker1Rot: {x: 0, y: 0, z: 0}
-  fakeTracker2Event: RHand_Move
+  fakeTracker2Event: Brush_Move
   initialTracker2Pos: {x: 0, y: 0, z: 0}
   initialTracker2Rot: {x: 0, y: 0, z: 0}
 --- !u!114 &1787831687
@@ -1285,9 +1269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 0
+  vrNodeType: 2
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 1700
   windowYPos: 50
   windowWidth: 200
@@ -1296,11 +1281,7 @@ MonoBehaviour:
   unityMouseMovesToVREvents: 1
   unityKeysToVREvents: []
   unityAxesToVREvents: []
-  eventAliases:
-  - aliasName: Brush_Move
-    rawEventName: RHand_Move
-  - aliasName: Hand_Move
-    rawEventName: LHand_Move
+  eventAliases: []
 --- !u!1 &1947807272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1350,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 1680
   windowYPos: 0
   windowWidth: 1280
@@ -1538,6 +1520,7 @@ MonoBehaviour:
   vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
+  numClients: 1
   windowXPos: 5520
   windowYPos: 0
   windowWidth: 1280
