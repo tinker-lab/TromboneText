@@ -30,12 +30,12 @@ namespace MinVR {
         void OnVREvent(VREvent e) {
 
             // only respond to tracker move events
-            if ((e.DataIndex.ContainsKey("EventType")) &&
-                (e.DataIndex.GetValueAsString("EventType") == "TrackerMove"))
+            if ((e.ContainsStringField("EventType")) &&
+                (e.GetStringData("EventType") == "TrackerMove"))
 			{
                 string trackerName = e.Name.Remove(e.Name.IndexOf("_Move"), 5);
                 if (!trackersToIgnore.Contains(trackerName)) {
-                    float[] data = e.DataIndex.GetValueAsFloatArray("Transform");
+                    float[] data = e.GetFloatArrayData("Transform");
                     Matrix4x4 m = VRConvert.ToMatrix4x4(data);
                     Vector3 pos = m.GetTranslation();
                     Quaternion rot = m.GetRotation();

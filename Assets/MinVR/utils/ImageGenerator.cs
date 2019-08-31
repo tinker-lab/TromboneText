@@ -40,7 +40,7 @@ public class ImageGenerator : MonoBehaviour, MinVR.VREventGenerator
         }
 
         VREvent e = new VREvent("ImageUpdate");
-        e.DataIndex.AddData("Buffer", imgBuffer);
+        e.AddData("Buffer", imgBuffer);
         eventList.Add(e);
     }
 

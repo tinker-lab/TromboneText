@@ -23,7 +23,7 @@ public class ImageReceiver : MonoBehaviour
     void OnImageUpdate(MinVR.VREvent e)
     {
         // access the image data buffer from the event
-        float[] buffer = e.DataIndex.GetValueAsFloatArray("Buffer");
+        float[] buffer = e.GetFloatArrayData("Buffer");
 
         // copy data into an array of colors
         int w = 100;

@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultVRDevice: {fileID: 0}
-  editorCmdLineArgs: -vrdevice CaveFrontWall_Top
+  editorCmdLineArgs: -vrdevice Desktop
   debugLogEvents: 0
 --- !u!4 &1475157710
 Transform:

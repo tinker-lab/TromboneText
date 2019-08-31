@@ -456,14 +456,17 @@ namespace MinVR {
 
 
                 // Call all registered callback functions
-				ProcessCallbacks(_inputEvents[i].Name, _inputEvents[i]);
+				ProcessCallbacks(_inputEvents[i]);
 
 				if (aliases.Count > 0)
 				{
+                    string tmp = _inputEvents[i].Name;
 					for (int j = 0; j < aliases.Count; j++)
 					{
-						ProcessCallbacks(aliases[j], _inputEvents[i]);
+                        _inputEvents[i].Name = aliases[j];
+						ProcessCallbacks(_inputEvents[i]);
 					}
+                    _inputEvents[i].Name = tmp;
 				}
 			}
 		}
@@ -542,9 +545,9 @@ namespace MinVR {
 				}
 				if (Input.GetKeyDown(vrDevice.unityKeysToVREvents[i]))
 				{
-					VRDataIndex data = new VRDataIndex("Kbd" + vrDevice.unityKeysToVREvents[i] + "_Up");
-					data.AddData("EventType", "ButtonUp");
-					eventList.Add(new VREvent(data.Name, data));
+                    VREvent e = new VREvent("Kbd" + vrDevice.unityKeysToVREvents[i] + "_Up");
+                    e.AddData("EventType", "ButtonUp");
+                    eventList.Add(e);
 				}
 			}
 
@@ -564,10 +567,10 @@ namespace MinVR {
 					update = true;
 				}
 				if (update) {
-					VRDataIndex data = new VRDataIndex(vrDevice.unityAxesToVREvents[i] + "_Update");
-					data.AddData("EventType", "AnalogUpdate");
-					data.AddData("AnalogValue", current);
-					eventList.Add(new VREvent(data.Name, data));
+                    VREvent e = new VREvent(vrDevice.unityAxesToVREvents[i] + "_Update");
+                    e.AddData("EventType", "AnalogUpdate");
+                    e.AddData("AnalogValue", current);
+                    eventList.Add(e);
 				}
 			}
 
@@ -577,20 +580,20 @@ namespace MinVR {
 		}
 
 
-        private void ProcessCallbacks(string eventName, VRDataIndex eventData)
+        private void ProcessCallbacks(VREvent e)
 		{
             // These "unfiltered" callbacks are called for every event
             for (int ucb = 0; ucb < genericCallbacksUnfiltered.Count; ucb++) {
-                genericCallbacksUnfiltered[ucb].Invoke(new VREvent(eventName, eventData));
+                genericCallbacksUnfiltered[ucb].Invoke(e);
             }
 
 
             // These callbacks are passed the enitre event data structure, which can really contain anything.
-            if (genericCallbacks.ContainsKey(eventName))
+            if (genericCallbacks.ContainsKey(e.Name))
 			{
-				for (int cb = 0; cb < genericCallbacks[eventName].Count; cb++)
+				for (int cb = 0; cb < genericCallbacks[e.Name].Count; cb++)
 				{
-					genericCallbacks[eventName][cb].Invoke(new VREvent(eventName, eventData));
+                    genericCallbacks[e.Name][cb].Invoke(e);
 				}
 			}
 
@@ -598,59 +601,59 @@ namespace MinVR {
             // For these callbacks, we know the type of data, so we pull it out of the dataindex here to
             // make it a bit easier for the user.
 
-			if ((analogCallbacks.ContainsKey(eventName)) &&
-				(eventData.ContainsKey("EventType")) &&
-				(eventData.GetValueAsString("EventType") == "AnalogUpdate"))
+			if ((analogCallbacks.ContainsKey(e.Name)) &&
+				(e.ContainsStringField("EventType")) &&
+				(e.GetStringData("EventType") == "AnalogUpdate"))
 			{
-				for (int cb = 0; cb < analogCallbacks[eventName].Count; cb++)
+				for (int cb = 0; cb < analogCallbacks[e.Name].Count; cb++)
 				{
-					analogCallbacks[eventName][cb].Invoke(eventData.GetValueAsFloat("AnalogValue"));
+					analogCallbacks[e.Name][cb].Invoke(e.GetFloatData("AnalogValue"));
 				}
 			}
 
-			if ((buttonDownCallbacks.ContainsKey(eventName)) &&
-				(eventData.ContainsKey("EventType")) &&
-				((eventData.GetValueAsString("EventType") == "ButtonDown") || (eventData.GetValueAsString("EventType") == "ButtonTouch")))
+			if ((buttonDownCallbacks.ContainsKey(e.Name)) &&
+                (e.ContainsStringField("EventType")) &&
+                ((e.GetStringData("EventType") == "ButtonDown") || (e.GetStringData("EventType") == "ButtonTouch")))
 			{
-				for (int cb = 0; cb < buttonDownCallbacks[eventName].Count; cb++)
+				for (int cb = 0; cb < buttonDownCallbacks[e.Name].Count; cb++)
 				{
-					buttonDownCallbacks[eventName][cb].Invoke();
+					buttonDownCallbacks[e.Name][cb].Invoke();
 				}
 			}
 
-		    if ((buttonUpCallbacks.ContainsKey(eventName)) &&
-				(eventData.ContainsKey("EventType")) &&
-				((eventData.GetValueAsString("EventType") == "ButtonUp") || (eventData.GetValueAsString("EventType") == "ButtonUntouch")))
+		    if ((buttonUpCallbacks.ContainsKey(e.Name)) &&
+                (e.ContainsStringField("EventType")) &&
+                ((e.GetStringData("EventType") == "ButtonUp") || (e.GetStringData("EventType") == "ButtonUntouch")))
 			{
-				for (int cb = 0; cb < buttonUpCallbacks[eventName].Count; cb++)
+				for (int cb = 0; cb < buttonUpCallbacks[e.Name].Count; cb++)
 				{
-					buttonUpCallbacks[eventName][cb].Invoke();
+					buttonUpCallbacks[e.Name][cb].Invoke();
 				}
 			}
 			
-			if ((cursorCallbacks.ContainsKey(eventName)) &&
-				(eventData.ContainsKey("EventType")) &&
-				(eventData.GetValueAsString("EventType") == "CursorMove"))
+			if ((cursorCallbacks.ContainsKey(e.Name)) &&
+                (e.ContainsStringField("EventType")) &&
+                (e.GetStringData("EventType") == "CursorMove"))
 			{
-				float[] pos = eventData.GetValueAsFloatArray("Position");
-				float[] npos = eventData.GetValueAsFloatArray("NormalizedPosition");
-				for (int cb = 0; cb < cursorCallbacks[eventName].Count; cb++)
+				float[] pos = e.GetFloatArrayData("Position");
+				float[] npos = e.GetFloatArrayData("NormalizedPosition");
+				for (int cb = 0; cb < cursorCallbacks[e.Name].Count; cb++)
 				{
-					cursorCallbacks[eventName][cb].Invoke(new Vector3(pos[0], pos[1], pos[2]), new Vector3(npos[0], npos[1], npos[2]));
+					cursorCallbacks[e.Name][cb].Invoke(new Vector3(pos[0], pos[1], pos[2]), new Vector3(npos[0], npos[1], npos[2]));
 				}
 			}
 			
-			if ((trackerCallbacks.ContainsKey(eventName)) &&
-				(eventData.ContainsKey("EventType")) &&
-				(eventData.GetValueAsString("EventType") == "TrackerMove"))
+			if ((trackerCallbacks.ContainsKey(e.Name)) &&
+                (e.ContainsStringField("EventType")) &&
+                (e.GetStringData("EventType") == "TrackerMove"))
 			{
-				float[] data = eventData.GetValueAsFloatArray("Transform");
+				float[] data = e.GetFloatArrayData("Transform");
 				Matrix4x4 m = VRConvert.ToMatrix4x4(data);
 				Vector3 pos = m.GetTranslation();
 				Quaternion rot = m.GetRotation();
-				for (int cb = 0; cb < trackerCallbacks[eventName].Count; cb++)
+				for (int cb = 0; cb < trackerCallbacks[e.Name].Count; cb++)
 				{
-					trackerCallbacks[eventName][cb].Invoke(pos, rot);
+					trackerCallbacks[e.Name][cb].Invoke(pos, rot);
 				}
 			}
 		

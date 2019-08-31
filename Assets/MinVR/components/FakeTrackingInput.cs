@@ -75,10 +75,10 @@ namespace MinVR {
 
             Matrix4x4 m3 = Matrix4x4.TRS(headTrackerPos, headTrackerRot, Vector3.one);
             float[] d3 = VRConvert.ToFloatArray(m3);
-            VRDataIndex data3 = new VRDataIndex(fakeHeadTrackerEvent);
-            data3.AddData("EventType", "TrackerMove");
-            data3.AddData("Transform", d3);
-            eventList.Add(new VREvent(fakeHeadTrackerEvent, data3));
+            VREvent e = new VREvent(fakeHeadTrackerEvent);
+            e.AddData("EventType", "TrackerMove");
+            e.AddData("Transform", d3);
+            eventList.Add(e);
         }
 
 
@@ -157,18 +157,18 @@ namespace MinVR {
             // for fake traker 1
             Matrix4x4 m1 = Matrix4x4.TRS(tracker1Pos, tracker1Rot, Vector3.one);
             float[] d1 = VRConvert.ToFloatArray(m1);
-            VRDataIndex data1 = new VRDataIndex(fakeTracker1Event);
-            data1.AddData("EventType", "TrackerMove");
-            data1.AddData("Transform", d1);
-            eventList.Add(new VREvent(fakeTracker1Event, data1));
+            VREvent e1 = new VREvent(fakeTracker1Event);
+            e1.AddData("EventType", "TrackerMove");
+            e1.AddData("Transform", d1);
+            eventList.Add(e1);
 
             // for fake traker 2
             Matrix4x4 m2 = Matrix4x4.TRS(tracker2Pos, tracker2Rot, Vector3.one);
             float[] d2 = VRConvert.ToFloatArray(m2);
-            VRDataIndex data2 = new VRDataIndex(fakeTracker2Event);
-            data2.AddData("EventType", "TrackerMove");
-            data2.AddData("Transform", d2);
-            eventList.Add(new VREvent(fakeTracker2Event, data2));
+            VREvent e2 = new VREvent(fakeTracker2Event);
+            e2.AddData("EventType", "TrackerMove");
+            e2.AddData("Transform", d2);
+            eventList.Add(e2);
 
             // 
             this.lastx = x;

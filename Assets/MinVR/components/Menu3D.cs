@@ -240,9 +240,9 @@ public class Menu3D : MonoBehaviour
             labelBoxes[selected - 1].GetComponent<Renderer>().material.color = pressColor;
 
             string eName = eventsToGenerate[selected - 1];
-            MinVR.VRDataIndex data = new MinVR.VRDataIndex(eName);
-            data.AddData("EventType", "ButtonDown");
-            MinVR.VRMain.Instance.QueueEvent(new MinVR.VREvent(eName, data));
+            MinVR.VREvent e = new MinVR.VREvent(eName);
+            e.AddData("EventType", "ButtonDown");
+            MinVR.VRMain.Instance.QueueEvent(e);
         }
     }
 

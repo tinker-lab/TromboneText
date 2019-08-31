@@ -283,6 +283,62 @@ namespace MinVR {
             return s;
         }
 
+
+        public string ToXML() {
+            string s = "<" + _name + " type=\"container\">";
+
+
+            foreach (KeyValuePair<string, byte> entry in _byteFields) {
+                s += "<" + entry.Key + " type=\"char\">" + entry.Value + "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, byte[]> entry in _byteArrayFields) {
+                s += "<" + entry.Key + " type=\"chararray\">";
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    if (i > 0) s += ",";
+                    s += entry.Value[i];
+                }
+                s += "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, int> entry in _intFields) {
+                s += "<" + entry.Key + " type=\"int\">" + entry.Value + "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, int[]> entry in _intArrayFields) {
+                s += "<" + entry.Key + " type=\"intarray\">";
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    if (i > 0) s += ",";
+                    s += entry.Value[i];
+                }
+                s += "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, float> entry in _floatFields) {
+                s += "<" + entry.Key + " type=\"float\">" + entry.Value + "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, float[]> entry in _floatArrayFields) {
+                s += "<" + entry.Key + " type=\"floatarray\">";
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    if (i > 0) s += ",";
+                    s += entry.Value[i];
+                }
+                s += "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, string> entry in _stringFields) {
+                s += "<" + entry.Key + " type=\"string\">" + entry.Value + "</" + entry.Key + ">";
+            }
+            foreach (KeyValuePair<string, string[]> entry in _stringArrayFields) {
+                s += "<" + entry.Key + " type=\"stringarray\">";
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    if (i > 0) s += ",";
+                    s += entry.Value[i];
+                }
+                s += "</" + entry.Key + ">";
+            }
+
+
+            s += "</" + _name + ">";
+            return s;
+        }
+
+
     }
 
 } // namespace MinVR
