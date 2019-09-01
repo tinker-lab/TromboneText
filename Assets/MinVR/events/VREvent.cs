@@ -286,6 +286,154 @@ namespace MinVR {
         }
 
 
+        public static VREvent FromBinary(BinaryReader br) {
+            string eName = br.ReadString();
+            VREvent e = new VREvent(eName);
+
+            int nByteFields = br.ReadInt32();
+            for (int i=0; i<nByteFields; i++) {
+                string fName = br.ReadString();
+                byte data = br.ReadByte();
+                e.AddData(fName, data);
+            }
+
+            int nByteArrayFields = br.ReadInt32();
+            for (int i=0; i<nByteArrayFields; i++) {
+                string fName = br.ReadString();
+                int nEntries = br.ReadInt32();
+                byte[] data = new byte[nEntries];
+                for (int j=0; j<nEntries; j++) {
+                    data[j] = br.ReadByte();
+                }
+                e.AddData(fName, data);
+            }
+
+
+            int nIntFields = br.ReadInt32();
+            for (int i = 0; i < nIntFields; i++) {
+                string fName = br.ReadString();
+                int data = br.ReadInt32();
+                e.AddData(fName, data);
+            }
+
+            int nIntArrayFields = br.ReadInt32();
+            for (int i = 0; i < nIntArrayFields; i++) {
+                string fName = br.ReadString();
+                int nEntries = br.ReadInt32();
+                int[] data = new int[nEntries];
+                for (int j = 0; j < nEntries; j++) {
+                    data[j] = br.ReadInt32();
+                }
+                e.AddData(fName, data);
+            }
+
+
+            int nFloatFields = br.ReadInt32();
+            for (int i = 0; i < nFloatFields; i++) {
+                string fName = br.ReadString();
+                float data = br.ReadSingle();
+                e.AddData(fName, data);
+            }
+
+            int nFloatArrayFields = br.ReadInt32();
+            for (int i = 0; i < nFloatArrayFields; i++) {
+                string fName = br.ReadString();
+                int nEntries = br.ReadInt32();
+                float[] data = new float[nEntries];
+                for (int j = 0; j < nEntries; j++) {
+                    data[j] = br.ReadSingle();
+                }
+                e.AddData(fName, data);
+            }
+
+
+            int nStringFields = br.ReadInt32();
+            for (int i = 0; i < nStringFields; i++) {
+                string fName = br.ReadString();
+                string data = br.ReadString();
+                e.AddData(fName, data);
+            }
+
+            int nStringArrayFields = br.ReadInt32();
+            for (int i = 0; i < nStringArrayFields; i++) {
+                string fName = br.ReadString();
+                int nEntries = br.ReadInt32();
+                string[] data = new string[nEntries];
+                for (int j = 0; j < nEntries; j++) {
+                    data[j] = br.ReadString();
+                }
+                e.AddData(fName, data);
+            }
+
+            return e;
+        }
+
+
+        public void ToBinary(BinaryWriter bw) {
+            bw.Write(_name);
+
+            bw.Write(_byteFields.Count);
+            foreach (KeyValuePair<string, byte> entry in _byteFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value);
+            }
+
+            bw.Write(_byteArrayFields.Count);
+            foreach (KeyValuePair<string, byte[]> entry in _byteArrayFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value.Length);
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    bw.Write(entry.Value[i]);
+                }
+            }
+
+            bw.Write(_intFields.Count);
+            foreach (KeyValuePair<string, int> entry in _intFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value);
+            }
+
+            bw.Write(_intArrayFields.Count);
+            foreach (KeyValuePair<string, int[]> entry in _intArrayFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value.Length);
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    bw.Write(entry.Value[i]);
+                }
+            }
+
+            bw.Write(_floatFields.Count);
+            foreach (KeyValuePair<string, float> entry in _floatFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value);
+            }
+
+            bw.Write(_floatArrayFields.Count);
+            foreach (KeyValuePair<string, float[]> entry in _floatArrayFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value.Length);
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    bw.Write(entry.Value[i]);
+                }
+            }
+
+            bw.Write(_stringFields.Count);
+            foreach (KeyValuePair<string, string> entry in _stringFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value);
+            }
+
+            bw.Write(_stringArrayFields.Count);
+            foreach (KeyValuePair<string, string[]> entry in _stringArrayFields) {
+                bw.Write(entry.Key);
+                bw.Write(entry.Value.Length);
+                for (int i = 0; i < entry.Value.Length; i++) {
+                    bw.Write(entry.Value[i]);
+                }
+            }
+        }
+
+
         public string ToXML() {
             string s = "<" + _name + " type=\"container\">";
 

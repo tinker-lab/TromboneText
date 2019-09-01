@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -100,6 +102,31 @@ namespace MinVR {
                 BrokenConnectionError();
             }
 
+
+            // 2. send event data
+            if (!client.Connected) {
+                BrokenConnectionError();
+                return;
+            }
+            try {
+                using (MemoryStream ms = new MemoryStream()) {
+                    using (BinaryWriter bw = new BinaryWriter(ms)) {
+                        bw.Write(inputEvents.Count);
+                        foreach (VREvent inputEvent in inputEvents) {
+                            inputEvent.ToBinary(bw);
+                        }
+                        byte[] bytes = ms.ToArray();
+                        WriteInt32(ref client, bytes.Length);
+                        client.GetStream().Write(bytes, 0, bytes.Length);
+                    }
+                }
+            }
+            catch (Exception e) {
+                Console.WriteLine("Exception: {0}", e);
+                BrokenConnectionError();
+            }
+            
+            /**
             // 2. create an XML-formatted string to hold all the inputEvents
             string xmlEvents = "<VRDataQueue num=\"" + inputEvents.Count + "\">";
             foreach (VREvent inputEvent in inputEvents) {
@@ -123,6 +150,7 @@ namespace MinVR {
                 Console.WriteLine("Exception: {0}", e);
                 BrokenConnectionError();
             }
+            **/
         }
 
 
@@ -132,6 +160,33 @@ namespace MinVR {
             // 1. receive 1-byte message header
             ReceiveOneByteMessage(ref client, VRNet.INPUT_EVENTS_MSG);
 
+            // 2. receive event data
+            try {
+                int dataSize = ReadInt32(ref client);
+                byte[] bytes = new byte[dataSize];
+                int status = ReceiveAll(ref client, ref bytes, dataSize);
+                if (status == -1) {
+                    Console.WriteLine("ReceiveEventData error reading data");
+                    return;
+                }
+
+                using (MemoryStream ms = new MemoryStream(bytes)) {
+                    using (BinaryReader br = new BinaryReader(ms)) {
+                        int nEvents = br.ReadInt32();
+                        for (int i = 0; i < nEvents; i++) {
+                            inputEvents.Add(VREvent.FromBinary(br));
+                        }
+                    }
+                }
+            }
+            catch (Exception e) {
+                Debug.Log("Exception: " + e);
+                Console.WriteLine("Exception: {0}", e);
+                BrokenConnectionError();
+            }
+            
+
+            /**
             // 2. receive int that tells us the size of the data portion of the message in bytes
             Int32 dataSize = ReadInt32(ref client);
 
@@ -182,6 +237,7 @@ namespace MinVR {
                 // Update the content to point to the next item if there is one
                 queueContent = itemLeftover;
             }
+            **/
         }
 
 
