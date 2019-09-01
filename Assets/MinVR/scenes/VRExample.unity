@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 2
+  vrNodeType: 0
   serverIPAddress: 127.0.0.1
   serverPort: 3490
   numClients: 1
