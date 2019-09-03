@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 103061132}
   - component: {fileID: 103061131}
   - component: {fileID: 103061133}
+  - component: {fileID: 103061134}
   m_Layer: 0
   m_Name: VRDebug
   m_TagString: Untagged
@@ -181,6 +182,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereScale: 0.05
+--- !u!114 &103061134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103061130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21d080a1ab324998947c72c16eb4117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &115584643
 GameObject:
   m_ObjectHideFlags: 0
