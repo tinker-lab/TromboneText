@@ -389,15 +389,24 @@ namespace MinVR {
 
 
             // 3. INITIALIZE VRMAIN WITH SETTINGS FROM THE VRDEVICE
-
             WindowUtils.RemoveBorder();
 			WindowUtils.SetPositionAndSize(vrDevice.windowXPos, vrDevice.windowYPos, vrDevice.windowWidth, vrDevice.windowHeight);
 
 			if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetClient) {
 				_netInterface = new VRNetClient(vrDevice.serverIPAddress, vrDevice.serverPort);
-			}
+
+                foreach (VRPNInput vrpn in Resources.FindObjectsOfTypeAll(typeof(VRPNInput)) as VRPNInput[])
+                {
+                   vrpn.gameObject.SetActive(false);
+                }
+            }
             else if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetServer) {
                 _netInterface = new VRNetServer(vrDevice.serverPort, vrDevice.numClients);
+
+                foreach (VRPNInput vrpn in Resources.FindObjectsOfTypeAll(typeof(VRPNInput)) as VRPNInput[])
+                {
+                    vrpn.gameObject.SetActive(true);
+                }
             }
 
             _initialized = true;

@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/MinVR/scenes/VRExample.unity
     guid: 4899dab31e4c244799ab9528c9f9afb8
+  - enabled: 1
+    path: Assets/MinVR/scenes/MacCave.unity
+    guid: 48b3cb91bbdb7c14a8289e934f1f5462
   m_configObjects: {}
