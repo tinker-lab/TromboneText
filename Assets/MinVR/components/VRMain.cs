@@ -391,6 +391,7 @@ namespace MinVR {
             // 3. INITIALIZE VRMAIN WITH SETTINGS FROM THE VRDEVICE
             WindowUtils.RemoveBorder();
 			WindowUtils.SetPositionAndSize(vrDevice.windowXPos, vrDevice.windowYPos, vrDevice.windowWidth, vrDevice.windowHeight);
+            WindowUtils.SetWindowTitle("MinVRUnity " + vrDevice.name);
 
 			if (vrDevice.vrNodeType == VRDevice.VRNodeType.NetClient) {
 				_netInterface = new VRNetClient(vrDevice.serverIPAddress, vrDevice.serverPort);
@@ -708,7 +709,7 @@ namespace MinVR {
                 PreUpdate();
             }
             // We also need a callback when the scene is done rendering, so we request that callback each frame.
-            StartCoroutine(EndOfFrameCallback());
+            //StartCoroutine(EndOfFrameCallback());
         }
 
 
@@ -722,6 +723,15 @@ namespace MinVR {
                 PostRender();
             }
         }
+        
+        void OnPostRender()
+        {
+            if (_state == NetState.PostRenderNext)
+            {
+                PostRender();
+            }
+        }
+        
 
 
         // gets all objects in the scene, even if the objects are inactive

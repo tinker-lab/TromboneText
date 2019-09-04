@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 103061132}
   - component: {fileID: 103061131}
   - component: {fileID: 103061133}
+  - component: {fileID: 103061134}
   m_Layer: 0
   m_Name: VRDebug
   m_TagString: Untagged
@@ -166,7 +167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &103061133
 MonoBehaviour:
@@ -181,6 +182,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereScale: 0.05
+--- !u!114 &103061134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103061130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21d080a1ab324998947c72c16eb4117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  labelPrefab: {fileID: 4832542463212067270, guid: 12daa110552c4874bbc8758508c1610f,
+    type: 3}
+  labelPosition: {x: 0, y: 5, z: 4}
 --- !u!1 &115584643
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &124037436
 GameObject:
@@ -519,7 +536,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &241198994
 MonoBehaviour:
@@ -706,7 +723,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &755877331
 MonoBehaviour:
@@ -813,6 +830,7 @@ GameObject:
   - component: {fileID: 1034262036}
   - component: {fileID: 1034262035}
   - component: {fileID: 1034262034}
+  - component: {fileID: 1034262033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -820,6 +838,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1034262033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034262032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235f6df60d7254a6281274b7cf39ad85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultVRDevice: {fileID: 0}
+  editorCmdLineArgs: -vrdevice Desktop
+  debugLogEvents: 0
 --- !u!81 &1034262034
 AudioListener:
   m_ObjectHideFlags: 0
@@ -883,7 +916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159075251
 GameObject:
@@ -1031,7 +1064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1451734111
 GameObject:
@@ -1088,52 +1121,6 @@ MonoBehaviour:
   positionAdjustment: {x: 0, y: 0, z: 0}
   rotationAdjustment: {x: 0, y: 0, z: 0}
   scaleAdjustment: {x: 3.28084, y: 3.28084, z: 3.28084}
---- !u!1 &1475157708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1475157710}
-  - component: {fileID: 1475157709}
-  m_Layer: 0
-  m_Name: VRMain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1475157709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475157708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 235f6df60d7254a6281274b7cf39ad85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultVRDevice: {fileID: 0}
-  editorCmdLineArgs: -vrdevice Desktop
-  debugLogEvents: 0
---- !u!4 &1475157710
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475157708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519929333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1236,7 @@ Transform:
   - {fileID: 2117611525}
   - {fileID: 124037437}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746806673
 GameObject:
@@ -1398,7 +1385,7 @@ Transform:
   - {fileID: 1451734112}
   - {fileID: 1159075252}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1787831684
 GameObject:
@@ -1480,14 +1467,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1eac3fa18b5e4a4d8812b67b6711f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrNodeType: 0
+  vrNodeType: 1
   serverIPAddress: 127.0.0.1
   serverPort: 3490
   numClients: 1
-  windowXPos: 1700
-  windowYPos: 50
-  windowWidth: 200
-  windowHeight: 200
+  windowXPos: 4480
+  windowYPos: 0
+  windowWidth: 1280
+  windowHeight: 720
   unityMouseBtnsToVREvents: 1
   unityMouseMovesToVREvents: 1
   unityKeysToVREvents: []
@@ -1721,7 +1708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117611524
 GameObject:
