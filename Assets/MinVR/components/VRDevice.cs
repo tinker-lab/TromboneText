@@ -47,6 +47,8 @@ namespace MinVR {
 
 
         // INPUT EVENT SETTINGS:
+        [Tooltip("If true, activates any VRPNInput objects found in the scene")]
+        public bool activateVRPNInputObjects = false;
 
         [Tooltip("If true, converts mouse up/down events from unity to VREvent ButtonUp/Down events.")]
         public bool unityMouseBtnsToVREvents = false;

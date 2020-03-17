@@ -59,16 +59,16 @@ namespace MinVR
         }
 
         [DllImport("VRPNMeshClient")]
-        static extern IntPtr initializeButton(string serverName, int buttonNumber);
+        static extern IntPtr InitializeButton(string serverName, int buttonNumber);
         [DllImport("VRPNMeshClient")]
-        static extern void updateButtons();
+        static extern void UpdateButtons();
         [DllImport("VRPNMeshClient")]
-        static extern void removeButton(string serverName, int buttonNumber);
+        static extern void RemoveButton(string serverName, int buttonNumber);
 
         // Use this for initialization
         void Start()
         {
-            buttonDataPointer = initializeButton(device + "@" + server, button);
+            buttonDataPointer = InitializeButton(device + "@" + server, button);
 
             pendingEvents = new List<VREvent>();
             if (String.IsNullOrEmpty(eventName))
@@ -83,7 +83,7 @@ namespace MinVR
             // update the trackers only once per frame
             if (lastButtonUpdateFrame != Time.frameCount)
             {
-                updateButtons();
+                UpdateButtons();
                 lastButtonUpdateFrame = Time.frameCount;
             }
             buttonData = (ButtonData)Marshal.PtrToStructure(buttonDataPointer, typeof(ButtonData));
@@ -195,7 +195,7 @@ namespace MinVR
 
         void OnDestroy()
         {
-            removeButton(device + "@" + server, button);
+            RemoveButton(device + "@" + server, button);
         }
 
     }

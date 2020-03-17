@@ -47,6 +47,8 @@ namespace MinVR
 
         static int lastAnalogUpdateFrame = -1;
 
+        private float lastAnalogState = -1;
+
         private List<VREvent> pendingEvents;
 
 
@@ -88,88 +90,92 @@ namespace MinVR
             }
             analogData = (AnalogData)Marshal.PtrToStructure(analogDataPointer, typeof(AnalogData));
 
-            VREvent e = new VREvent(eventName);
-            e.AddData("EventType", "AnalogUpdate");
-            e.AddData("AnalogValue", (float)analogData.state);
-            pendingEvents.Add(e);
-
-            if (applyUpdatesToGameObject)
+            if (analogData.state != lastAnalogState)
             {
+                lastAnalogState = (float)analogData.state;
 
-                float speedThisFrame = speed * Time.deltaTime * (float)analogData.state;
+                VREvent e = new VREvent(eventName);
+                e.AddData("EventType", "AnalogUpdate");
+                e.AddData("AnalogValue", (float)analogData.state);
+                pendingEvents.Add(e);
 
-                if (movementType == MovementType.TRANSLATE)
+                if (applyUpdatesToGameObject)
                 {
-                    Vector3 position = transform.localPosition;
-                    if (axis == Axis.X)
-                        position.x += speedThisFrame;
-                    else if (axis == Axis.Y)
-                        position.y += speedThisFrame;
-                    else if (axis == Axis.Z)
-                        position.z += speedThisFrame;
-                    else
+
+                    float speedThisFrame = speed * Time.deltaTime * (float)analogData.state;
+
+                    if (movementType == MovementType.TRANSLATE)
                     {
-                        position.x += speedThisFrame;
-                        position.y += speedThisFrame;
-                        position.z += speedThisFrame;
+                        Vector3 position = transform.localPosition;
+                        if (axis == Axis.X)
+                            position.x += speedThisFrame;
+                        else if (axis == Axis.Y)
+                            position.y += speedThisFrame;
+                        else if (axis == Axis.Z)
+                            position.z += speedThisFrame;
+                        else
+                        {
+                            position.x += speedThisFrame;
+                            position.y += speedThisFrame;
+                            position.z += speedThisFrame;
+                        }
+
+                        transform.localPosition = position;
                     }
-
-                    transform.localPosition = position;
-                }
-                else if (movementType == MovementType.ROTATE)
-                {
-                    Quaternion newRotation = Quaternion.identity;
-                    Vector3 newAngles = newRotation.eulerAngles;
-
-                    if (axis == Axis.X)
-                        newAngles.x += speedThisFrame;
-                    else if (axis == Axis.Y)
-                        newAngles.y += speedThisFrame;
-                    else if (axis == Axis.Z)
-                        newAngles.z += speedThisFrame;
-                    else
+                    else if (movementType == MovementType.ROTATE)
                     {
-                        newAngles.x += speedThisFrame;
-                        newAngles.y += speedThisFrame;
-                        newAngles.z += speedThisFrame;
+                        Quaternion newRotation = Quaternion.identity;
+                        Vector3 newAngles = newRotation.eulerAngles;
+
+                        if (axis == Axis.X)
+                            newAngles.x += speedThisFrame;
+                        else if (axis == Axis.Y)
+                            newAngles.y += speedThisFrame;
+                        else if (axis == Axis.Z)
+                            newAngles.z += speedThisFrame;
+                        else
+                        {
+                            newAngles.x += speedThisFrame;
+                            newAngles.y += speedThisFrame;
+                            newAngles.z += speedThisFrame;
+                        }
+
+                        if (newAngles.x > 360)
+                            newAngles.x %= 360;
+
+                        if (newAngles.y > 360)
+                            newAngles.y %= 360;
+
+                        if (newAngles.z > 360)
+                            newAngles.z %= 360;
+
+                        newRotation.eulerAngles = newAngles;
+
+
+                        Quaternion rotation = transform.localRotation;
+                        rotation = rotation * newRotation;
+                        transform.localRotation = rotation;
                     }
-
-                    if (newAngles.x > 360)
-                        newAngles.x %= 360;
-
-                    if (newAngles.y > 360)
-                        newAngles.y %= 360;
-
-                    if (newAngles.z > 360)
-                        newAngles.z %= 360;
-
-                    newRotation.eulerAngles = newAngles;
-
-
-                    Quaternion rotation = transform.localRotation;
-                    rotation = rotation * newRotation;
-                    transform.localRotation = rotation;
-                }
-                else if (movementType == MovementType.SCALE)
-                {
-                    Vector3 scale = transform.localScale;
-                    if (axis == Axis.X)
-                        scale.x += speedThisFrame;
-                    else if (axis == Axis.Y)
-                        scale.y += speedThisFrame;
-                    else if (axis == Axis.Z)
-                        scale.z += speedThisFrame;
-                    else
+                    else if (movementType == MovementType.SCALE)
                     {
-                        scale.x += speedThisFrame;
-                        scale.y += speedThisFrame;
-                        scale.z += speedThisFrame;
-                    }
+                        Vector3 scale = transform.localScale;
+                        if (axis == Axis.X)
+                            scale.x += speedThisFrame;
+                        else if (axis == Axis.Y)
+                            scale.y += speedThisFrame;
+                        else if (axis == Axis.Z)
+                            scale.z += speedThisFrame;
+                        else
+                        {
+                            scale.x += speedThisFrame;
+                            scale.y += speedThisFrame;
+                            scale.z += speedThisFrame;
+                        }
 
-                    transform.localScale = scale;
+                        transform.localScale = scale;
+                    }
                 }
             }
-
 
         }
 

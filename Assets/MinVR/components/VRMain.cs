@@ -409,6 +409,24 @@ namespace MinVR {
                     vrpn.gameObject.SetActive(true);
                 }
             }
+            else if (vrDevice.vrNodeType == VRDevice.VRNodeType.StandAlone)
+            {
+                if (vrDevice.activateVRPNInputObjects)
+                {
+                    foreach (VRPNInput vrpn in Resources.FindObjectsOfTypeAll(typeof(VRPNInput)) as VRPNInput[])
+                    {
+                        vrpn.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    foreach (VRPNInput vrpn in Resources.FindObjectsOfTypeAll(typeof(VRPNInput)) as VRPNInput[])
+                    {
+                        vrpn.gameObject.SetActive(false);
+                    }
+
+                }
+            }
 
             _initialized = true;
 		}
@@ -697,6 +715,7 @@ namespace MinVR {
         void Start() {
             if (!_initialized) {
                 Initialize();
+                StartCoroutine(EndOfFrameLoop());
             }
         }
 
@@ -723,7 +742,23 @@ namespace MinVR {
                 PostRender();
             }
         }
+
+        IEnumerator EndOfFrameLoop()
+        {
+            while (true)
+            {
+                // This is a fancy feature of Unity and C# and is the only way I know how to get a callback after Unity
+                // has finished completely rendering the frame, which may include rendering more than one camera.
+                // The yield command pauses execution of this function until the EndOfFrame is reached.
+                yield return new WaitForEndOfFrame();
+                if (_state == NetState.PostRenderNext)
+                {
+                    PostRender();
+                }
+            }
+        }
         
+        /*
         void OnPostRender()
         {
             if (_state == NetState.PostRenderNext)
@@ -731,6 +766,7 @@ namespace MinVR {
                 PostRender();
             }
         }
+        */
         
 
 
@@ -771,6 +807,8 @@ namespace MinVR {
             }
             return list;
         }
+
+        
 
 
     } // class VRMain
