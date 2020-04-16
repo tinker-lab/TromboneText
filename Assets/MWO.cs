@@ -11,15 +11,16 @@ public class MWO : MonoBehaviour
     int scrollSpeed = 3;
     int jmwo = 0;
     int imwo = 0;
+    char letter = 'a';
 
-    [SerializeField]
-    private Text mouseWheelValue;
+    
+    public Text mouseWheelValue;
 
     
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -28,10 +29,11 @@ public class MWO : MonoBehaviour
         var d = Input.GetAxis("Mouse ScrollWheel");
         //Debug.Log(d);
         float w = Input.GetAxis("Mouse ScrollWheel");
+        //Debug.Log(w);
         //char[] alpha = new char[26]; 
 
         char[] alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-        char letter = '\0';
+       
         /*for (char letter = 'A'; letter <= 'Z'; letter++)
         {
             alpha[i] = letter;
@@ -59,17 +61,8 @@ public class MWO : MonoBehaviour
             Debug.Log(letter);
         }
         else { letter = letter; }
-        mouseWheelValue.text ="Your letter is: " + letter.ToString();
-        /*if (d > 0f && travel > -30)
-        {
-            travel = travel - scrollSpeed;
-            Camera.main.transform.Translate(0, 0, 1 * scrollSpeed, Space.Self);
-        }
-        else if(d < 0f && travel < 100)
-        {
-            travel = travel + scrollSpeed;
-            Camera.main.transform.Translate(0, 0, -1 * scrollSpeed, Space.Self);
-        }*/
+        mouseWheelValue.text ="Your letter is: " + letter;
+        
     }
 
 
