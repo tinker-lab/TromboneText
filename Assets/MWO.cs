@@ -19,6 +19,7 @@ public class MWO : MonoBehaviour
     public Text mouseWheelValue;
     public Text aboveWheelValue;
     public Text belowWheelValue;
+    public Text inputFieldValue;
 
     
     // Start is called before the first frame update
@@ -131,6 +132,7 @@ public class MWO : MonoBehaviour
         mouseWheelValue.text ="Your letter is: " + letter.ToString();
         aboveWheelValue.text = beforeLetter.ToString();
         belowWheelValue.text = afterLetter.ToString();
+        inputFieldValue.text += letter.ToString();
         
     }
 
