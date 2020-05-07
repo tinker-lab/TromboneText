@@ -156,7 +156,7 @@ public class MWO : MonoBehaviour
                 beforeLetter = '_';
                 afterLetter = alpha[jmwo + 1];
             }
-            else // checks for errors
+            else // checks for er
             {
                 beforeLetter = '$';
                 Debug.Log("ERRRRRRRRRRRRRRRRRRRRRRRRRRROOOOORRR" + jmwo);
@@ -199,11 +199,11 @@ public class MWO : MonoBehaviour
 
 
 
-       /* Debug.Log("jmwo is : " + jmwo);
+        /*Debug.Log("jmwo is : " + jmwo);
         Debug.Log("beforeLetter is: " + beforeLetter);
         Debug.Log("Letter is: " + letter);
-        Debug.Log("afterLetter is: " + afterLetter);
-    }*/
+        Debug.Log("afterLetter is: " + afterLetter);*/
+    }
 
 
     
